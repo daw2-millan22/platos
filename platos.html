@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid bg-primary">
+        <div class="container bg-secondary text-light">
+            <div class="receta row">
+                <div class="ingredients row"></div>
+                <div class="images row"></div>
+                <div class="username row"></div>
+                <div class="title row"></div>
+                <div class="description row"></div>
+                <div class="difficulty row"></div>
+                <div class="persons row"></div>
+                <div class="id row"></div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        const url = "https://nodemonrest.herokuapp.com/recipes/"; 
+
+        
+       var nodoPadre = document.querySelector(".container");
+        fetch(url)
+        //recibo la variable resultado del fetch y me devovlerá el archivo en formato json
+        
+        .then(resultado => resultado.json())
+        .then(json =>{
+            console.log(json);
+            json.forEach((element, index)=>{
+                console.log(element.description);
+                let html = document.querySelector(".receta");
+                let nIngredientes = html.querySelector(".ingredientes");
+                let nImages = html.querySelector(".images");
+                let nUsername = html.querySelector(".username");
+                let nTitle = html.querySelector(".title");
+                let nDescription = html.querySelector(".description");
+                let nDifficulty = html.querySelector(".difficulty");
+                let nPersons = html.querySelector(".persons");
+                let nId = html.querySelector(".id");
+
+                
+
+                //nIngredientes.textContent = element.ingredients[0];
+                //nImages.textContent = element.images;
+                nUsername.textContent = element.username;
+                nTitle.textContent = element.title;
+                nDescription.textContent = element.description;
+                nDifficulty.textContent = element.difficulty;
+                nPersons.textContent = element.persons;
+                //nId.textContent = element,id;
+
+                nodoPadre.hasChildNodes(html);
+
+
+               
+                  
+                
+            })
+        })
+        
+        
+
+        
+        
+     
+
+    </script>
+</body>
+</html>
